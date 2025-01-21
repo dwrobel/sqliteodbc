@@ -11298,7 +11298,7 @@ drvtables(SQLHSTMT stmt,
 #ifdef MEMORY_DEBUG
 	s->rowfree = xfree__;
 #else
-	s->rowfree = free;
+	s->rowfree = freerows;
 #endif
 	s->nrows = 2;
 	s->rowp = -1;
@@ -12266,7 +12266,7 @@ drvgettypeinfo(SQLHSTMT stmt, SQLSMALLINT sqltype)
 #ifdef MEMORY_DEBUG
     s->rowfree = xfree__;
 #else
-    s->rowfree = free;
+    s->rowfree = freerows;
 #endif
     memset(s->rows, 0, sizeof (char *) * (s->nrows + 1) * asize);
     if (sqltype == SQL_ALL_TYPES) {

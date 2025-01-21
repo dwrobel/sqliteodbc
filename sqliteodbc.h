@@ -260,7 +260,7 @@ typedef struct stmt {
     int nrows;			/**< Number of result rows */
     int rowp;			/**< Current result row */
     char **rows;		/**< 2-dim array, result set */
-    void (*rowfree)();		/**< Free function for rows */
+    void (*rowfree)(char **);		/**< Free function for rows */
     int naterr;			/**< Native error code */
     char sqlstate[6];		/**< SQL state for SQLError() */
     SQLCHAR logmsg[1024];	/**< Message for SQLError() */

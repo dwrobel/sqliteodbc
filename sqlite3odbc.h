@@ -264,7 +264,7 @@ typedef struct stmt {
     int rowp;			/**< Current result row */
     int rowprs;			/**< Current start row of rowset */
     char **rows;		/**< 2-dim array, result set */
-    void (*rowfree)();		/**< Free function for rows */
+    void (*rowfree)(char **);	/**< Free function for rows */
     int naterr;			/**< Native error code */
     char sqlstate[6];		/**< SQL state for SQLError() */
     SQLCHAR logmsg[1024];	/**< Message for SQLError() */
