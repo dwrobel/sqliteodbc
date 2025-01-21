@@ -103,6 +103,14 @@ typedef struct {
     struct dbc *dbcs;		/**< Pointer to first DBC */
 } ENV;
 
+/* Based on SQLGetPrivateProfileString from the odbcinst.h */
+typedef int (*gpps_t)(const char *lpszSection,
+                const char *lpszEntry,
+                const char *lpszDefault,
+                const char *RetBuffer,
+                int cbRetBuffer,
+                const char *lpszFilename);
+
 /**
  * @typedef DBC
  * @struct dbc
@@ -145,7 +153,7 @@ typedef struct dbc {
     int pwdLen;			/**< Length of password */
 #ifdef USE_DLOPEN_FOR_GPPS
     void *instlib;
-    int (*gpps)();
+    gpps_t gpps;
 #endif
 #if defined(_WIN32) || defined(_WIN64)
     CRITICAL_SECTION cs;	/**< For serializing most APIs */

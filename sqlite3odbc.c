@@ -1240,7 +1240,6 @@ static void
 drvgetgpps(DBC *d)
 {
     void *lib;
-    int (*gpps)();
 
     lib = dlopen("libodbcinst.so.2", RTLD_LAZY);
     if (!lib) {
@@ -1256,7 +1255,7 @@ drvgetgpps(DBC *d)
 	lib = dlopen("libiodbcinst.so", RTLD_LAZY);
     }
     if (lib) {
-	gpps = (int (*)()) dlsym(lib, "SQLGetPrivateProfileString");
+	gpps_t gpps = (gpps_t) dlsym(lib, "SQLGetPrivateProfileString");
 	if (!gpps) {
 	    dlclose(lib);
 	    return;
